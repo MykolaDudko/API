@@ -28,15 +28,15 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
                        reloadOnChange: true));
 
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy(PolicyConstants.RequireEditRole, policy => policy.RequireRole("RequireViewRole"));
-    options.AddPolicy(PolicyConstants.RequireViewRole, policy => policy.RequireRole("RequireViewRole", "RequireEdit"));
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy(PolicyConstants.RequireEditRole, policy => policy.RequireRole("RequireViewRole"));
+//    options.AddPolicy(PolicyConstants.RequireViewRole, policy => policy.RequireRole("RequireViewRole", "RequireEdit"));
 
-    options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-});
+//    options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+//});
 
 
 // Add services to the container.
@@ -92,29 +92,29 @@ builder.Services.AddHttpClient<ICarrierBranchProvider, UpsPbhCarrierBranchProvid
 
 builder.Services.AddSwaggerGen(options =>
 {
-    options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
-    {
-        Scheme = "bearer",
-        BearerFormat = "JWT",
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Description = "Bearer Authentication with JWT Token",
-        Type = SecuritySchemeType.Http
-    });
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Id = "bearer",
-                    Type = ReferenceType.SecurityScheme
-                }
-            },
-            new List<string>()
-        }
-    });
+    //options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+    //{
+    //    Scheme = "bearer",
+    //    BearerFormat = "JWT",
+    //    In = ParameterLocation.Header,
+    //    Name = "Authorization",
+    //    Description = "Bearer Authentication with JWT Token",
+    //    Type = SecuritySchemeType.Http
+    //});
+    //options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    //{
+    //    {
+    //        new OpenApiSecurityScheme
+    //        {
+    //            Reference = new OpenApiReference
+    //            {
+    //                Id = "bearer",
+    //                Type = ReferenceType.SecurityScheme
+    //            }
+    //        },
+    //        new List<string>()
+    //    }
+    //});
     options.UseDateOnlyTimeOnlyStringConverters();
 });
 var app = builder.Build();

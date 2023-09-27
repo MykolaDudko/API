@@ -13,7 +13,7 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Policy = PolicyConstants.RequireViewRole)]
+//[Authorize(Policy = PolicyConstants.RequireViewRole)]
 public class BranchProvidersController : ControllerBase
 {
     private readonly ISender _mediator;
@@ -45,7 +45,7 @@ public class BranchProvidersController : ControllerBase
     }
 
     [HttpPatch("{categoryId}")]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ExceptionDefinition))]

@@ -12,7 +12,7 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Policy = PolicyConstants.RequireViewRole)]
+//[Authorize(Policy = PolicyConstants.RequireViewRole)]
 
 public class CarriersController : ControllerBase
 {
@@ -47,7 +47,7 @@ public class CarriersController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(int))]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     public async Task<IActionResult> AddCarrier(CreateCarrierRequest carrier, CancellationToken ct)
     {
         var command = new CreateCarrierCommand(carrier);
@@ -56,7 +56,7 @@ public class CarriersController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ExceptionDefinition))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -68,7 +68,7 @@ public class CarriersController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ExceptionDefinition))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]

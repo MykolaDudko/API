@@ -12,7 +12,7 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Policy = PolicyConstants.RequireViewRole)]
+//[Authorize(Policy = PolicyConstants.RequireViewRole)]
 public class HandoverPointsController : ControllerBase
 {
     private readonly ISender _mediator;
@@ -35,7 +35,7 @@ public class HandoverPointsController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(int))]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     public async Task<IActionResult> AddHandoverPoint(CreateHandoverPointRequest handoverPoint, CancellationToken ct)
     {
         var command = new CreateHandoverPointCommand(handoverPoint);
@@ -47,7 +47,7 @@ public class HandoverPointsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ExceptionDefinition))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     public async Task<IActionResult> DeleteHandoverPoint(int id, CancellationToken ct)
     {
         var command = new DeleteHandoverPointCommand(id);
@@ -59,7 +59,7 @@ public class HandoverPointsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ExceptionDefinition))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     public async Task<IActionResult> UpdateHandoverPoint(UpdateHandoverPointRequest handoverPoint, int id, CancellationToken ct)
     {
         var command = new UpdateHandoverPointCommand(handoverPoint, id);

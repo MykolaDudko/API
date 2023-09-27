@@ -12,7 +12,7 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Policy = PolicyConstants.RequireViewRole)]
+//[Authorize(Policy = PolicyConstants.RequireViewRole)]
 public class ConsignorsController : ControllerBase
 {
     private readonly ISender _mediator;
@@ -35,7 +35,7 @@ public class ConsignorsController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(int))]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     public async Task<IActionResult> AddConsignor(CreateConsignorRequest consignor, CancellationToken ct)
     {
         var command = new CreateConsignorCommand(consignor);
@@ -47,7 +47,7 @@ public class ConsignorsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ExceptionDefinition))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     public async Task<IActionResult> DeleteConsignor(int id, CancellationToken ct)
     {
         var command = new DeleteConsignorCommand(id);
@@ -59,7 +59,7 @@ public class ConsignorsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ExceptionDefinition))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    [Authorize(Policy = PolicyConstants.RequireEditRole)]
+    //[Authorize(Policy = PolicyConstants.RequireEditRole)]
     public async Task<IActionResult> UpdateConsignor(UpdateConsignorRequest consignor, int id, CancellationToken ct)
     {
         var command = new UpdateConsignorCommand(consignor, id);
